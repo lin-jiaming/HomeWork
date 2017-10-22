@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	
+	<!-- 设置系统参数 -->
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.ui.theme" value="simple"/>
+
+	<!-- 设置Action -->
+	<package name="mytest" extends="json-default">
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+		<action name="clsAction_*" method="{1}" class="clsAction">
+			<result name="input">/index.jsp</result>
+			<result name="doAddTbCls" type="redirect">/pages/addTbCls.jsp?res=${res}</result>
+			<result name="findTbClsList">/pages/findTbClsList.jsp</result>
+		</action>
+		
+		<action name="stuAction_*" method="{1}" class="stuAction">
+			<result name="input">/index.jsp</result>
+			<result name="toAddTbStu">/pages/addTbStu.jsp</result>
+			<result name="doAddTbStu" type="redirectAction">stuAction_toAddTbStu?res=${res}</result>
+			<result name="findTbStuList">/pages/findTbStuList.jsp</result>
+			<result name="toUpdateTbStu">/pages/updateTbStu.jsp</result>
+			<result name="doUpdateTbStu" type="redirectAction">stuAction_findTbStuList?res=${res}</result>
+			<result name="doDeleteTbStu" type="redirectAction">stuAction_findTbStuList?res=${res}</result>
+		</action>
+	</package>
+</struts>
+
+
+
+
+
